@@ -1,4 +1,4 @@
-const DEFAULT_SHORTCUT = { code: "KeyC", ctrl: false, shift: false, alt: false, meta: false };
+const DEFAULT_SHORTCUT = { type: "double", modifier: "Shift" };
 
 const display = document.getElementById("shortcut-display");
 const btn = document.getElementById("record-btn");

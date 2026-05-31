@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Focus Finder",
   "version": "1.0",
-  "description": "Press Ctrl+Shift+Space to open a search palette that finds and focuses any input element by its label, placeholder, or name.",
+  "description": "Press Shift+Shift to open a palette that finds and focuses any element on the page by label, placeholder, or type. Fully keyboard accessible.",
   "permissions": ["scripting", "activeTab", "storage"],
   "content_scripts": [
     {

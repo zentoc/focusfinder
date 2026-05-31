@@ -248,7 +248,7 @@ function escHtml(str) {
         ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-const DEFAULT_SHORTCUT = { code: "KeyC", ctrl: false, shift: false, alt: false, meta: false };
+const DEFAULT_SHORTCUT = { type: "double", modifier: "Shift" };
 let shortcut = DEFAULT_SHORTCUT;
 let lastDoublePressTime = 0;
 
