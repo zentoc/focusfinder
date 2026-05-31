@@ -3,7 +3,7 @@
   "name": "Focus Finder",
   "version": "1.0",
   "description": "Press Ctrl+Shift+Space to open a search palette that finds and focuses any input element by its label, placeholder, or name.",
-  "permissions": ["scripting", "activeTab"],
+  "permissions": ["scripting", "activeTab", "storage"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -13,6 +13,7 @@
     }
   ],
   "action": {
-    "default_title": "Focus Finder"
+    "default_title": "Focus Finder",
+    "default_popup": "settings.html"
   }
 }

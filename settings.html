@@ -2,9 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Settings</title>
+    <title>Focus Finder</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            width: 260px;
+            background: #1e1e2e;
+            color: #cdd6f4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 13px;
+        }
+
+        #header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px 12px;
+            border-bottom: 1px solid #313244;
+            color: #89b4fa;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        #content {
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .setting-label {
+            color: #6c7086;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+
+        .shortcut-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #shortcut-display {
+            flex: 1;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .key-badge {
+            background: #181825;
+            border: 1px solid #45475a;
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 12px;
+            color: #cdd6f4;
+            font-family: inherit;
+        }
+
+        #record-btn {
+            background: #313244;
+            border: 1px solid #45475a;
+            border-radius: 6px;
+            color: #cdd6f4;
+            font-size: 12px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.1s;
+            white-space: nowrap;
+        }
+
+        #record-btn:hover { background: #45475a; }
+
+        #record-btn.recording {
+            background: #313244;
+            border-color: #89b4fa;
+            color: #89b4fa;
+        }
+
+        #hint {
+            color: #585b70;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
-<h1>Settings</h1>
+    <div id="header">Focus Finder</div>
+    <div id="content">
+        <div>
+            <div class="setting-label">Trigger shortcut</div>
+            <div class="shortcut-row">
+                <div id="shortcut-display"></div>
+                <button id="record-btn">Change</button>
+            </div>
+        </div>
+        <div id="hint">Won't trigger when a text field is focused.</div>
+    </div>
+    <script src="settings.js"></script>
 </body>
 </html>

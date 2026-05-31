@@ -248,24 +248,44 @@ function escHtml(str) {
         ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-let lastCTime = 0;
+const DEFAULT_SHORTCUT = { code: "KeyC", ctrl: false, shift: false, alt: false, meta: false };
+let shortcut = DEFAULT_SHORTCUT;
+let lastDoublePressTime = 0;
+
+chrome.storage.local.get("shortcut", ({ shortcut: stored }) => {
+    if (stored) shortcut = stored;
+});
+
+chrome.storage.onChanged.addListener(({ shortcut: change }) => {
+    if (change) shortcut = change.newValue;
+});
 
 document.addEventListener("keydown", (e) => {
     if (overlay) return;
-    if (e.key !== "c") { lastCTime = 0; return; }
+
+    if (shortcut.type === "double") {
+        if (e.key !== shortcut.modifier) { lastDoublePressTime = 0; return; }
+        const now = Date.now();
+        if (now - lastDoublePressTime < 400) {
+            e.preventDefault();
+            lastDoublePressTime = 0;
+            onOpenFocusFinder();
+        } else {
+            lastDoublePressTime = now;
+        }
+        return;
+    }
+
+    if (e.code !== shortcut.code) return;
+    if (e.ctrlKey !== shortcut.ctrl || e.shiftKey !== shortcut.shift ||
+        e.altKey !== shortcut.alt || e.metaKey !== shortcut.meta) return;
 
     const active = document.activeElement;
     const tag = active?.tagName.toLowerCase();
     if (tag === "input" || tag === "textarea" || active?.isContentEditable) return;
 
-    const now = Date.now();
-    if (now - lastCTime < 400) {
-        e.preventDefault();
-        lastCTime = 0;
-        onOpenFocusFinder();
-    } else {
-        lastCTime = now;
-    }
+    e.preventDefault();
+    onOpenFocusFinder();
 }, true);
 
 chrome.runtime.onMessage.addListener((message) => {
