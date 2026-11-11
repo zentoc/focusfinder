@@ -3,11 +3,11 @@
   "name": "Focus Finder",
   "version": "1.0",
   "description": "Press Shift+Shift to open a palette that finds and focuses any element on the page by label, placeholder, or type. Fully keyboard accessible.",
-  "permissions": ["scripting", "activeTab", "storage"],
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["focus.js"],
+      "js": ["shortcut.js", "focus.js"],
       "css": ["styles.css"],
       "run_at": "document_idle"
     }
