@@ -33,5 +33,15 @@ Click the extension icon to open settings. Click **Change** and press any key or
 | `focus.js` | Content script: element discovery, the palette, and the trigger shortcut |
 | `styles.css` | Palette styles injected into pages |
 | `settings.html` / `settings.css` / `settings.js` | Settings popup for changing the shortcut |
+| `icons/` | Extension icons, resized from `focus_finder_logo_square.png` |
+| `package.sh` | Builds the zip for the Chrome Web Store |
 
 There is no build step. After editing a file, reload the extension on `chrome://extensions` and refresh the page.
+
+## Packaging for the Chrome Web Store
+
+```bash
+./package.sh
+```
+
+This writes `dist/focus-finder-<version>.zip` containing only the files the extension loads. Bump `version` in `manifest.json` before each upload; the store rejects a version it has already seen.
